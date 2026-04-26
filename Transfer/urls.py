@@ -20,5 +20,5 @@ from webb import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("Hi/",views.index,name="index"),
+    path("",views.index,name='index')
 ]

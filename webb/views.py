@@ -5,4 +5,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello World")
+    my_dic={'name':"amir"}
+    return render(request,'webb/index.html',context=my_dic)
