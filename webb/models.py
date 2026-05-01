@@ -3,6 +3,7 @@
 from django.db import models
 
 class Human(models.Model):
+    Id=models.AutoField(primary_key=True,unique=True)
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
 
@@ -10,3 +11,4 @@ class Human(models.Model):
         return self.first_name +" " + self.last_name    
 
 
+  
