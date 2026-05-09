@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>new person adder</title>
+</head>
+
+<body>
+    {% csrf_token %}
+    <form method="POST">
+    <h2>enter the data of your new person</h2>
+    {{form.as_p}}
+    {% csrf_token %}
+    <input type="submit" class="btn btn_info" value="submit">    
+    
+    </form>       
+
+</body>
+
+
+
+</html>
