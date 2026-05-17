@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webb import views  
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.index,name='index'),
-    path("formpage/",views.index_addHuman,name="index_addHuman")
+    path('first-page',include('webb.urls')),
 ] 
