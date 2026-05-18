@@ -18,6 +18,3 @@ def index_agency_video(request):
     return render(request,'webb/index-agency-video.html')
 def index_agency_triangles_slider(request):
     return render(request,'webb/index-agency-triangles-slider.html')
-
-def test(request):
-    return render(request,'webb/test.html')
