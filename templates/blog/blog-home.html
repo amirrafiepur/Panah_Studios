@@ -166,7 +166,7 @@
 								<li><a href="#">Lifestyle</a></li>
 							</ul>
 							<div class="user-details row">
-								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{data.author}}</a> <span
+								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{data.author.get_full_name}}</a> <span
 										class="lnr lnr-user"></span></p>
 								<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{data.date_created}}</a> <span
 										class="lnr lnr-calendar-full"></span></p>
@@ -179,15 +179,15 @@
 						<div class="col-lg-9 col-md-9 ">
 							<div class="feature-img">
 
-								<img class="img-fluid" src="{% static 'blog_static/img/blog/feature-img1.jpg' %}" alt="">
+								<img class="img-fluid" src="{{data.image.url}}" alt="no image found">
 							</div>
-							<a class="posts-title" href="#">
+							<a class="posts-title" href="{% url 'blog:single' pid=data.id %}">
 								<h3>{{data.title}}</h3>
 							</a>
 							<p class="excert">
 								{{data.body}}
 							</p>
-							<a href="#" class="primary-btn">View More</a>
+							<a href="{% url 'blog:single' pid=data.id %}" class="primary-btn">View More</a>
 						</div>
 					</div>
 					<nav class="blog-pagination justify-content-center d-flex">

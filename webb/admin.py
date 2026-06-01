@@ -10,7 +10,7 @@ admin.site.register(category)
 admin.site.register(comments)
 
 class webbAdmin(admin.ModelAdmin):
-    list_display=['title','status']
+    list_display=['title','status','id']
     search_fields=['title','comment','body']
 
 admin.site.register(post,webbAdmin)
