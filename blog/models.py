@@ -34,7 +34,7 @@ class post(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='blog/',default='blog/default.jpg')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_category = models.ForeignKey(category, on_delete=models.PROTECT)
+    post_category = models.ManyToManyField(category)
     tag = models.ForeignKey(tags, on_delete=models.PROTECT, null=True)
     comment = models.ForeignKey(comments, on_delete=models.CASCADE, null=True)
     def __str__(self):
