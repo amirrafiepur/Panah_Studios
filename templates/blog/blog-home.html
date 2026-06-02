@@ -160,7 +160,8 @@
 						{% for data in datas %}
 						<div class="col-lg-3  col-md-3 meta-details">
 							<ul class="tags">
-								<li><a href="#">{{data.post_category.all|join:", " }}
+								{% for cat in data.post_category.all %}
+								<li><a href="#">{{cat}}  {% if not forloop.last %} , {% endif %} {% endfor %}
 									</a></li>
 
 							</ul>
@@ -168,7 +169,7 @@
 								<p class="user-name col-lg-12 col-md-12 col-6"><a
 										href="#">{{data.author.get_full_name}}</a> <span class="lnr lnr-user"></span>
 								</p>
-								<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{data.date_created}}</a> <span
+								<p class="date col-lg-12 col-md-12 col-6">{{data.date_created|date:"d/M/Y"}}   <span
 										class="lnr lnr-calendar-full"></span></p>
 								<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{data.counted_views}}</a> <span
 										class="lnr lnr-eye"></span></p>
@@ -185,7 +186,7 @@
 								<h3>{{data.title}}</h3>
 							</a>
 							<p class="excert">
-								{{data.body}}
+								{{data.body|truncatewords:10}}
 							</p>
 							<a href="{% url 'blog:single' pid=data.id %}" class="primary-btn">View More</a>
 						</div>
