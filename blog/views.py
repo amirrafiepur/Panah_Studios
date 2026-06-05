@@ -8,3 +8,4 @@ def blog_home(request):
 def blog_single(request,pid):
     context={'data' : get_object_or_404(post , id=pid , status=1)}
     return render(request,'blog/blog-single.html', context)
+
