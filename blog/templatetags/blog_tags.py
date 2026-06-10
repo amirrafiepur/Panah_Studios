@@ -14,3 +14,8 @@ def filter_tag(data):
 def inclusion_tag():
     posts = post.objects.filter(status=1)
     return {'posts':posts}
+
+@register.inclusion_tag('blog/latest_posts.html')
+def latest_posts():
+    posts = post.objects.filter(status=1).order_by('-date_published')[:2]
+    return {'posts':posts}
