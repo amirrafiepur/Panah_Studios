@@ -19,3 +19,8 @@ def inclusion_tag():
 def latest_posts():
     posts = post.objects.filter(status=1).order_by('-date_published')[:2]
     return {'posts':posts}
+
+@register.inclusion_tag("blog/category.html")
+def categories():
+    categories=category.objects.all()
+    return {'categories':categories}
