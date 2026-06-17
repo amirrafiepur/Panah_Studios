@@ -1,0 +1,449 @@
+/* ------------------------------------------------
+   blog-extra.css
+   Styles for the redesigned blog-home & blog-single
+   templates. Built on top of the existing Helio theme
+   CSS variables defined in main.css (--base, --accent,
+   --t-default, --t-muted, --strokes, etc.) so the blog
+   pages stay visually consistent with index.html.
+   ------------------------------------------------ */
+
+.blog-nav,
+.blog-hero,
+.blog-body,
+.blog-empty {
+  font-family: "iranyekan", sans-serif;
+  color: var(--t-default);
+  font-size: 1.0625rem;
+}
+
+/* ---------- Nav ---------- */
+.blog-nav {
+  position: relative;
+  z-index: 20;
+  padding: 1.5rem 2rem;
+  background: var(--base);
+  border-bottom: 1px solid var(--strokes);
+}
+
+.blog-nav__logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--t-default);
+  text-decoration: none;
+}
+
+.blog-nav__logo span {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.blog-nav__menu {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+}
+
+.blog-nav__menu a {
+  font-size: 1.1rem;
+  color: var(--t-muted);
+  text-decoration: none;
+  transition: color var(--_animspeed-medium) var(--_animbezier);
+}
+
+.blog-nav__menu a:hover,
+.blog-nav__menu a.is-active {
+  color: var(--accent);
+}
+
+/* ---------- Hero ---------- */
+.blog-hero {
+  background: var(--base);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+}
+
+.blog-hero--single {
+  text-align: left;
+  padding-bottom: 2.5rem;
+}
+
+.blog-hero__subtitle {
+  color: var(--accent);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.blog-hero__title {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 700;
+  color: var(--t-bleft);
+  margin-bottom: 0.75rem;
+}
+
+.blog-hero__desc {
+  color: var(--t-muted);
+  font-size: 1.25rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.blog-hero--single .blog-hero__desc {
+  margin: 0;
+}
+
+.blog-hero__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--t-muted);
+  margin-bottom: 1rem;
+}
+
+.blog-hero__breadcrumb a {
+  color: var(--t-muted);
+  text-decoration: none;
+}
+
+.blog-hero__breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.blog-hero__breadcrumb i {
+  font-size: 0.85rem;
+}
+
+.blog-hero__breadcrumb span {
+  color: var(--t-default);
+}
+
+/* ---------- Body / layout ---------- */
+.blog-body {
+  background: var(--base);
+  padding: 2rem 2rem 4rem;
+}
+
+.blog-body--single {
+  padding-top: 0;
+}
+
+.blog-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blog-empty {
+  color: var(--t-muted);
+  font-size: 1.3rem;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+/* ---------- Post card (blog-home list) ---------- */
+.post-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  background: var(--base-inner);
+  border: 1px solid var(--strokes);
+  border-radius: var(--_radius-m);
+  overflow: hidden;
+  transition: transform var(--_animspeed-medium) var(--_animbezier),
+    border-color var(--_animspeed-medium) var(--_animbezier);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.post-card__image {
+  display: block;
+  overflow: hidden;
+}
+
+.post-card__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  transition: transform 0.6s var(--_animbezier);
+}
+
+.post-card:hover .post-card__image img {
+  transform: scale(1.06);
+}
+
+.post-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.75rem 1.75rem 0;
+}
+
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+}
+
+.post-card__tags li a {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.12);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.post-card__title-link {
+  text-decoration: none;
+}
+
+.post-card__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--t-bleft);
+  margin: 0 0 0.6rem;
+  transition: color var(--_animspeed-medium) var(--_animbezier);
+}
+
+.post-card:hover .post-card__title {
+  color: var(--accent);
+}
+
+.post-card__excerpt {
+  color: var(--t-muted);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.post-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 1rem;
+  color: var(--t-muted);
+  margin-bottom: 1.25rem;
+}
+
+.post-card__author {
+  color: var(--t-muted);
+  text-decoration: none;
+}
+
+.post-card__author:hover {
+  color: var(--accent);
+}
+
+.post-card__meta i {
+  margin-right: 0.3rem;
+}
+
+.post-card__more {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ---------- Single post ---------- */
+.post-single__image {
+  border-radius: var(--_radius-m);
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.post-single__image img {
+  width: 100%;
+  display: block;
+}
+
+.post-single__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--strokes);
+  font-size: 1.05rem;
+  color: var(--t-muted);
+}
+
+.post-single__body {
+  color: var(--t-default);
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+.post-single__body p {
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Sidebar ---------- */
+.blog-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-widget {
+  background: var(--base-inner);
+  border: 1px solid var(--strokes);
+  border-radius: var(--_radius-m);
+  padding: 1.5rem;
+}
+
+.sidebar-widget h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--t-bleft);
+  margin-bottom: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* search widget */
+.search-widget form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--strokes);
+  border-radius: var(--_radius-s);
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  background: var(--base);
+}
+
+.search-widget input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--t-default);
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.search-widget input::placeholder {
+  color: var(--t-placeholders);
+}
+
+.search-widget button {
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* latest posts widget */
+.popular-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.single-post-list {
+  display: flex;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.single-post-list .thumb {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--_radius-s);
+  overflow: hidden;
+}
+
+.single-post-list .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.single-post-list .details a {
+  text-decoration: none;
+}
+
+.single-post-list .details h6 {
+  font-size: 1.05rem;
+  color: var(--t-default);
+  margin: 0 0 0.25rem;
+}
+
+.single-post-list .details p {
+  font-size: 0.9rem;
+  color: var(--t-muted);
+  margin: 0;
+}
+
+/* category widget */
+.cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cat-list li a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--t-muted);
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--_radius-s);
+  transition: background var(--_animspeed-medium) var(--_animbezier),
+    color var(--_animspeed-medium) var(--_animbezier);
+}
+
+.cat-list li a:hover {
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+}
+
+.cat-list li a p {
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .post-card {
+    grid-template-columns: 1fr;
+  }
+
+  .post-card__body {
+    padding: 1.5rem;
+  }
+
+  .blog-nav__menu {
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .blog-hero,
+  .blog-body {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}

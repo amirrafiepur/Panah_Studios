@@ -1,292 +1,145 @@
-<!DOCTYPE html>
 {% extends 'webb/base.html' %}
 {% load static %}
 {% load blog_tags %}
 {% block content %}
-<html lang="zxx" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
 
 <head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="{% static 'blog_static/img/fav.png' %}">
-	<!-- Author Meta -->
-	<meta name="author" content="colorlib">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>PANAH studios | Blog</title>
-
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-	<!--
-			CSS
-			============================================= -->
-	<link rel="stylesheet" href="{% static 'blog_static/css/linearicons.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/bootstrap.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/magnific-popup.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/jquery-ui.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/nice-select.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/animate.min.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/owl.carousel.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/main.css' %}">
+    <meta charset="UTF-8">
+    <title>PANAH studios | Blog</title>
+    <meta name="description" content="PANAH studios blog - articles on web development, design and more.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{% static 'img/favicon/favicon.ico' %}" sizes='any'>
+    <link rel="icon" href="{% static 'img/favicon/icon.svg' %}" type='image/svg+xml'>
+    <link rel="apple-touch-icon" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'img/favicon/manifest.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/plugins-demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main-demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog-extra.css' %}">
+    <meta name="theme-color" content="#4d26b3">
 </head>
 
 <body>
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
+    <div class="loader">
+        <div class="loader">
+            <div class="loader__content">
+                <div class="loader__logo"><img src="{% static 'img/loader.svg' %}" alt="PANAH studios"></div>
+            </div>
+        </div>
+    </div>
 
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="index.html"><img src="{% static 'blog_static/img/logo.png' %}" alt="" title="" /></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="{% url 'webb:home' %}">Home</a></li>
-						<li><a href="{% url 'webb:back' %}">backend</a></li>
-						<li><a href="{% url 'webb:front' %}">frontend</a></li>
-						<li><a href="{% url 'blog:blog' %}">Blog home</a></li>
-						<li><a href="{% url 'webb:contact' %}">Contact</a></li>
-					</ul>
-				</nav><!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header><!-- #header -->
+    <div class="top-controls d-flex">
+        <button id="color-switcher" class="btn btn-round btn-outline hover-anim hover-secondary color-switcher"
+            type="button" role="switch" aria-label="light/dark mode" aria-checked="true"></button>
+    </div>
 
-	<!-- start banner Area -->
-	<section class="banner-area relative blog-home-banner" id="home">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content blog-header-content col-lg-12">
-					<h1 class="text-white">
-						welcome to our blog!
-					</h1>
-					<p class="text-white">
-						this is the blog app in my first django project, a demo for 'PANAH studios' website
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+    <header class="blog-nav">
+        <div class="container-fluid px-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-6 col-md-4">
+                    <a class="blog-nav__logo" href="{% url 'webb:home' %}">PANAH <span>studios</span></a>
+                </div>
+                <div class="col-6 col-md-8">
+                    <nav class="blog-nav__menu">
+                        <a href="{% url 'webb:home' %}">Home</a>
+                        <a href="{% url 'webb:front' %}">Front-end</a>
+                        <a href="{% url 'webb:back' %}">Back-end</a>
+                        <a href="{% url 'blog:blog' %}" class="is-active">Blog</a>
+                        <a href="{% url 'webb:contact' %}">Contact</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
-	<!-- Start top-category-widget Area -->
-	<section class="top-category-widget-area pt-90 pb-90 ">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto"
-										src="{% static 'blog_static/img/blog/cat-widget1.jpg' %}" alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Social life</h4>
-									<span></span>
-									<p>Enjoy your social life together</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto"
-										src="{% static 'blog_static/img/blog/cat-widget2.jpg' %}" alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Politics</h4>
-									<span></span>
-									<p>Be a part of politics</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto"
-										src="{% static 'blog_static/img/blog/cat-widget3.jpg' %}" alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Food</h4>
-									<span></span>
-									<p>Let the food be finished</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End top-category-widget Area -->
+    <section class="blog-hero">
+        <div class="container-fluid px-0">
+            <div class="row g-0">
+                <div class="col-12">
+                    <p class="blog-hero__subtitle">PANAH studios</p>
+                    <h1 class="blog-hero__title">From the blog</h1>
+                    <p class="blog-hero__desc">Thoughts on development, design and everything we build at PANAH
+                        studios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Start post-content Area -->
-	<section class="post-content-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 posts-list">
+    <div class="content">
+        <section class="blog-body first-section">
+            <div class="container-fluid px-0">
+                <div class="row gx-4">
+                    <div class="col-12 col-lg-8 blog-posts">
 
-					{% for data in datas %}
-					<div class="single-post row">
+                        {% for data in datas %}
+                        <article class="post-card">
+                            <a class="post-card__image" href="{% url 'blog:single' pid=data.id %}">
+                                <img src="{{ data.image.url }}" alt="{{ data.title }}">
+                            </a>
+                            <div class="post-card__body">
+                                <ul class="post-card__tags">
+                                    {% for cat in data.post_category.all %}
+                                    <li><a href="{% url 'blog:blog_category' cat_name=cat %}">{{ cat }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="{% url 'blog:single' pid=data.id %}" class="post-card__title-link">
+                                    <h2 class="post-card__title">{{ data.title }}</h2>
+                                </a>
+                                <p class="post-card__excerpt">{{ data.body|truncatewords:18 }}</p>
+                                <div class="post-card__meta">
+                                    <a class="post-card__author"
+                                        href="{% url 'blog:author' author_name=data.author.username %}">
+                                        <i class="ph ph-user-circle"></i> {{ data.author.get_full_name }}
+                                    </a>
+                                    <span class="post-card__date"><i class="ph ph-calendar-blank"></i> {{ data.date_created|date:"d M Y" }}</span>
+                                </div>
+                                <a class="btn btn-default btn-outline hover-anim hover-secondary post-card__more"
+                                    href="{% url 'blog:single' pid=data.id %}">
+                                    <em></em><span class="btn-caption">Read more</span><i
+                                        class="ph ph-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                        {% empty %}
+                        <p class="blog-empty">No posts published yet. Check back soon!</p>
+                        {% endfor %}
 
-						<div class="col-lg-3 col-md-3 meta-details">
-							<ul class="tags">
-								{% for cat in data.post_category.all %}
-								<li>
-									<a href="{% url 'blog:blog_category' cat_name=cat %}">
-										{{ cat }}{% if not forloop.last %}, {% endif %}
-									</a>
-								</li>
-								{% endfor %}
-							</ul>
+                    </div>
 
-							<div class="user-details row">
-								<p class="user-name col-lg-12 col-md-12 col-6">
-									<a href="{% url 'blog:author' author_name=data.author.username %}">{{ data.author.get_full_name }}</a>
-								</p>
-								<p class="date col-lg-12 col-md-12 col-6">
-									<a>{{ data.date_created|date:"d/M/Y" }}</a>
-								</p>
+                    <aside class="col-12 col-lg-4 blog-sidebar">
+                        <div class="sidebar-widget">
+                            {% include 'blog/search.html' %}
+                        </div>
 
-								<p class="view col-lg-12 col-md-12 col-6">
-									<a>1.2M Views</a>
-								</p>
+                        <div class="sidebar-widget">
+                            {% latest_posts %}
+                        </div>
 
-								<p class="comments col-lg-12 col-md-12 col-6">
-									<a href="#">06 Comments</a>
-								</p>
-							</div>
-						</div>
+                        <div class="sidebar-widget">
+                            {% categories %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-						<div class="col-lg-9 col-md-9">
-							<div class="feature-img">
-								<img class="img-fluid" src="{{ data.image.url }}" alt="">
-							</div>
+        <footer class="footer">
+            <div class="footer__content">
+                <p class="footer__caption">این تازه اول راهه... با امیر و صبا در استودیو پناه همراه باشید</p>
+            </div>
+        </footer>
+        <div class="bottom-bg"><img src="{% static 'img/demo/footer-bg.webp' %}" alt="PANAH studios"></div>
+    </div>
 
-							<a class="posts-title" href="{% url 'blog:single' pid=data.id %}">
-								<h3>{{ data.title }}</h3>
-							</a>
+    <a id="to-top" class="to-top btn btn-round btn-filled hover-anim hover-accent" href="#0"><em></em><i
+            class="ph ph-arrow-up"></i></a>
+    <script src="{% static 'js/demo/jquery.min.js' %}"></script>
+    <script src="{% static 'js/demo/modernizr.js' %}"></script>
+    <script src="{% static 'js/demo/demo.js' %}"></script>
+</body>
 
-							<p class="excert">
-								{{ data.body|truncatewords:10 }}
-							</p>
-
-							<a href="{% url 'blog:single' pid=data.id %}" class="primary-btn">
-								View More
-							</a>
-						</div>
-
-					</div>
-					{% endfor %}
-
-				</div>
-				<div class="col-lg-4 sidebar-widgets">
-					<div class="widget-wrap">
-						{% include 'blog/search.html' %}
-						<div class="single-sidebar-widget user-info-widget">
-							<img src="{% static 'blog_static/img/blog/user-info.png' %}" alt="">
-							<a href="#">
-								<h4>Charlie Barber</h4>
-							</a>
-							<p>
-								Senior blog writer
-							</p>
-							<ul class="social-links">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-github"></i></a></li>
-								<li><a href="#"><i class="fa fa-behance"></i></a></li>
-							</ul>
-							<p>
-								Boot camps have its supporters andit sdetractors. Some people do not understand why you
-								should have to spend money on boot camp when you can get. Boot camps have itssuppor ters
-								andits detractors.
-							</p>
-						</div>
-						{% latest_posts %}
-						<div class="single-sidebar-widget ads-widget">
-							<a href="#"><img class="img-fluid" src="{% static 'blog_static/img/blog/ads-banner.jpg' %}"
-									alt=""></a>
-						</div>
-						{% categories %}
-						<div class="single-sidebar-widget newsletter-widget">
-							<h4 class="newsletter-title">Newsletter</h4>
-							<p>
-								Here, I focus on a range of items and features that we use in life without
-								giving them a second thought.
-							</p>
-							<div class="form-group d-flex flex-row">
-								<div class="col-autos">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<div class="input-group-text"><i class="fa fa-envelope"
-													aria-hidden="true"></i>
-											</div>
-										</div>
-										<input type="text" class="form-control" id="inlineFormInputGroup"
-											placeholder="Enter email" onfocus="this.placeholder = ''"
-											onblur="this.placeholder = 'Enter email'">
-									</div>
-								</div>
-								<a href="#" class="bbtns">Subcribe</a>
-							</div>
-							<p class="text-bottom">
-								You can unsubscribe at any time
-							</p>
-						</div>
-						<div class="single-sidebar-widget tag-cloud-widget">
-							<h4 class="tagcloud-title">Tag Clouds</h4>
-							<ul>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Architecture</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Food</a></li>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Art</a></li>
-								<li><a href="#">Adventure</a></li>
-								<li><a href="#">Food</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Adventure</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End post-content Area -->
-	{% endblock %}
+</html>
+{% endblock %}

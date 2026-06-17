@@ -1,375 +1,140 @@
-<!DOCTYPE html>
 {% extends 'webb/base.html' %}
 {% load static %}
 {% load blog_tags %}
 {% block content %}
-<html lang="zxx" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
 
 <head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="{% static 'blog_static/img/fav.png' %}">
-	<!-- Author Meta -->
-	<meta name="author" content="colorlib">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>PANAH studios | blog details</title>
-
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-	<!--
-			CSS
-			============================================= -->
-	<link rel="stylesheet" href="{% static 'blog_static/css/linearicons.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/bootstrap.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/magnific-popup.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/jquery-ui.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/nice-select.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/animate.min.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/owl.carousel.css' %}">
-	<link rel="stylesheet" href="{% static 'blog_static/css/main.css' %}">
+    <meta charset="UTF-8">
+    <title>PANAH studios | {{ data.title }}</title>
+    <meta name="description" content="{{ data.body|truncatewords:20 }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{% static 'img/favicon/favicon.ico' %}" sizes='any'>
+    <link rel="icon" href="{% static 'img/favicon/icon.svg' %}" type='image/svg+xml'>
+    <link rel="apple-touch-icon" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'img/favicon/manifest.webmanifest' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/plugins-demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main-demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog-extra.css' %}">
+    <meta name="theme-color" content="#4d26b3">
 </head>
 
 <body>
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
+    <div class="loader">
+        <div class="loader">
+            <div class="loader__content">
+                <div class="loader__logo"><img src="{% static 'img/loader.svg' %}" alt="PANAH studios"></div>
+            </div>
+        </div>
+    </div>
 
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="index.html"><img src="{% static 'blog_static/img/logo.png' %}" alt="" title="" /></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="{% url 'webb:home' %}">Home</a></li>
-						<li><a href="{% url 'webb:back' %}">backend</a></li>
-						<li><a href="{% url 'webb:front' %}">frontend</a></li>
-						<li><a href="{% url 'blog:blog' %}">Blog home</a></li>
-						<li><a href="{% url 'webb:contact' %}">Contact</a></li>
-					</ul>
-					</ul>
-				</nav><!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header><!-- #header -->
+    <div class="top-controls d-flex">
+        <button id="color-switcher" class="btn btn-round btn-outline hover-anim hover-secondary color-switcher"
+            type="button" role="switch" aria-label="light/dark mode" aria-checked="true"></button>
+    </div>
 
-	<!-- start banner Area -->
-	<section class="relative about-banner">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content col-lg-12">
-					<h1 class="text-white">
-						"{{data.title}}" by {{data.author.get_full_name}}
-					</h1>
-					<p class="text-white link-nav"><a href="index.html">Home </a> <span
-							class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span
-							class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+    <header class="blog-nav">
+        <div class="container-fluid px-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-6 col-md-4">
+                    <a class="blog-nav__logo" href="{% url 'webb:home' %}">PANAH <span>studios</span></a>
+                </div>
+                <div class="col-6 col-md-8">
+                    <nav class="blog-nav__menu">
+                        <a href="{% url 'webb:home' %}">Home</a>
+                        <a href="{% url 'webb:front' %}">Front-end</a>
+                        <a href="{% url 'webb:back' %}">Back-end</a>
+                        <a href="{% url 'blog:blog' %}" class="is-active">Blog</a>
+                        <a href="{% url 'webb:contact' %}">Contact</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
-	<!-- Start post-content Area -->
-	<section class="post-content-area single-post-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 posts-list">
-					<div class="single-post row">
-						<div class="col-lg-12">
-							<div class="feature-img">
-								<img class="img-fluid" src="{{data.image.url}}" alt="no image found">
-							</div>
-						</div>
-						<div class="col-lg-3  col-md-3 meta-details">
-							<ul class="tags">
-								{% for cat in data.post_category.all %}
-								<li><a href="{% url 'blog:blog_category' cat_name=cat %}">{{cat}} {% if not forloop.last %} , {% endif %}
-									</a></li>
-								{% endfor %}
-							</ul>
-							<div class="user-details row">
-								<p class="user-name col-lg-12 col-md-12 col-6"><a
-										href="{% url 'blog:author' author_name=data.author.username %}">{{data.author.get_full_name}}</a> <span class="lnr lnr-user"></span>
-								</p>
-								<p class="date col-lg-12 col-md-12 col-6"><a
-										>{{data.date_created|date:"d/M/Y"}}</a> <span
-										class="lnr lnr-calendar-full"></span></p>
-								<p class="view col-lg-12 col-md-12 col-6"><a>1.2M Views</a> <span
-										class="lnr lnr-eye"></span></p>
-								<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-										class="lnr lnr-bubble"></span></p>
-								<ul class="social-links col-lg-12 col-md-12 col-6">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-github"></i></a></li>
-									<li><a href="#"><i class="fa fa-behance"></i></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-9 col-md-9">
-							<h3 class="mt-20 mb-20">{{data.title}}</h3>
-							<p class="excert">
-								{{data.body}} </p>
-						</div>
-						
-					</div>
-					<div class="navigation-area">
-						<div class="row">
-							<div
-								class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-								<div class="thumb">
-									<a href="#"><img class="img-fluid"
-											src="{% static 'blog_static/img/blog/prev.jpg' %}" alt=""></a>
-								</div>
-								<div class="arrow">
-									<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-								</div>
-								<div class="detials">
-									<p>Prev Post</p>
-									<a href="#">
-										<h4>Space The Final Frontier</h4>
-									</a>
-								</div>
-							</div>
-							<div
-								class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-								<div class="detials">
-									<p>Next Post</p>
-									<a href="#">
-										<h4>Telescopes 101</h4>
-									</a>
-								</div>
-								<div class="arrow">
-									<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-								</div>
-								<div class="thumb">
-									<a href="#"><img class="img-fluid"
-											src="{% static 'blog_static/img/blog/next.jpg' %}" alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="comments-area">
-						<h4>05 Comments</h4>
-						<div class="comment-list">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="{% static 'blog_static/img/blog/c1.jpg' %}" alt="">
-									</div>
-									<div class="desc">
-										<h5><a href="#">Emilly Blunt</a></h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
-										<p class="comment">
-											Never say goodbye till the end comes!
-										</p>
-									</div>
-								</div>
-								<div class="reply-btn">
-									<a href="" class="btn-reply text-uppercase">reply</a>
-								</div>
-							</div>
-						</div>
-						<div class="comment-list left-padding">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="{% static 'blog_static/img/blog/c2.jpg' %}" alt="">
-									</div>
-									<div class="desc">
-										<h5><a href="#">Elsie Cunningham</a></h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
-										<p class="comment">
-											Never say goodbye till the end comes!
-										</p>
-									</div>
-								</div>
-								<div class="reply-btn">
-									<a href="" class="btn-reply text-uppercase">reply</a>
-								</div>
-							</div>
-						</div>
-						<div class="comment-list left-padding">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="{% static 'blog_static/img/blog/c3.jpg' %}" alt="">
-									</div>
-									<div class="desc">
-										<h5><a href="#">Annie Stephens</a></h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
-										<p class="comment">
-											Never say goodbye till the end comes!
-										</p>
-									</div>
-								</div>
-								<div class="reply-btn">
-									<a href="" class="btn-reply text-uppercase">reply</a>
-								</div>
-							</div>
-						</div>
-						<div class="comment-list">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="{% static 'blog_static/img/blog/c4.jpg' %}" alt="">
-									</div>
-									<div class="desc">
-										<h5><a href="#">Maria Luna</a></h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
-										<p class="comment">
-											Never say goodbye till the end comes!
-										</p>
-									</div>
-								</div>
-								<div class="reply-btn">
-									<a href="" class="btn-reply text-uppercase">reply</a>
-								</div>
-							</div>
-						</div>
-						<div class="comment-list">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="{% static 'blog_static/img/blog/c5.jpg' %}" alt="">
-									</div>
-									<div class="desc">
-										<h5><a href="#">Ina Hayes</a></h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
-										<p class="comment">
-											Never say goodbye till the end comes!
-										</p>
-									</div>
-								</div>
-								<div class="reply-btn">
-									<a href="" class="btn-reply text-uppercase">reply</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="comment-form">
-						<h4>Leave a Comment</h4>
-						<form>
-							<div class="form-group form-inline">
-								<div class="form-group col-lg-6 col-md-12 name">
-									<input type="text" class="form-control" id="name" placeholder="Enter Name"
-										onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
-								</div>
-								<div class="form-group col-lg-6 col-md-12 email">
-									<input type="email" class="form-control" id="email"
-										placeholder="Enter email address" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Enter email address'">
-								</div>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" id="subject" placeholder="Subject"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
-							</div>
-							<div class="form-group">
-								<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
-									required=""></textarea>
-							</div>
-							<a href="#" class="primary-btn text-uppercase">Post Comment</a>
-						</form>
-					</div>
-				</div>
-				<div class="col-lg-4 sidebar-widgets">
-					<div class="widget-wrap">
-						{% include 'blog/search.html' %}
-						<div class="single-sidebar-widget user-info-widget">
-							<img src="{% static 'blog_static/img/blog/user-info.png' %}" alt="">
-							<a href="#">
-								<h4>Charlie Barber</h4>
-							</a>
-							<p>
-								Senior blog writer
-							</p>
-							<ul class="social-links">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-github"></i></a></li>
-								<li><a href="#"><i class="fa fa-behance"></i></a></li>
-							</ul>
-							<p>
-								Boot camps have its supporters andit sdetractors. Some people do not understand why you
-								should have to spend money on boot camp when you can get. Boot camps have itssuppor ters
-								andits detractors.
-							</p>
-						</div>
-						{% latest_posts %}
-						<div class="single-sidebar-widget ads-widget">
-							<a href="#"><img class="img-fluid" src="{% static 'blog_static/img/blog/ads-banner.jpg' %}"
-									alt=""></a>
-						</div>
-						{% categories %}
-						<div class="single-sidebar-widget newsletter-widget">
-							<h4 class="newsletter-title">Newsletter</h4>
-							<p>
-								Here, I focus on a range of items and features that we use in life without
-								giving them a second thought.
-							</p>
-							<div class="form-group d-flex flex-row">
-								<div class="col-autos">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<div class="input-group-text"><i class="fa fa-envelope"
-													aria-hidden="true"></i>
-											</div>
-										</div>
-										<input type="text" class="form-control" id="inlineFormInputGroup"
-											placeholder="Enter email" onfocus="this.placeholder = ''"
-											onblur="this.placeholder = 'Enter email'">
-									</div>
-								</div>
-								<a href="#" class="bbtns">Subcribe</a>
-							</div>
-							<p class="text-bottom">
-								You can unsubscribe at any time
-							</p>
-						</div>
-						<div class="single-sidebar-widget tag-cloud-widget">
-							<h4 class="tagcloud-title">Tag Clouds</h4>
-							<ul>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Architecture</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Food</a></li>
-								<li><a href="#">Technology</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Art</a></li>
-								<li><a href="#">Adventure</a></li>
-								<li><a href="#">Food</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Adventure</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End post-content Area -->
-	{% endblock %}
+    <section class="blog-hero blog-hero--single">
+        <div class="container-fluid px-0">
+            <div class="row g-0">
+                <div class="col-12">
+                    <p class="blog-hero__breadcrumb">
+                        <a href="{% url 'webb:home' %}">Home</a>
+                        <i class="ph ph-arrow-right"></i>
+                        <a href="{% url 'blog:blog' %}">Blog</a>
+                        <i class="ph ph-arrow-right"></i>
+                        <span>{{ data.title }}</span>
+                    </p>
+                    <h1 class="blog-hero__title">{{ data.title }}</h1>
+                    <p class="blog-hero__desc">by {{ data.author.get_full_name }} &middot; {{ data.date_created|date:"d M Y" }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="blog-body blog-body--single first-section">
+            <div class="container-fluid px-0">
+                <div class="row gx-4">
+                    <div class="col-12 col-lg-8 blog-posts">
+
+                        <article class="post-single">
+                            <div class="post-single__image">
+                                <img src="{{ data.image.url }}" alt="{{ data.title }}">
+                            </div>
+
+                            <div class="post-single__meta">
+                                <ul class="post-card__tags">
+                                    {% for cat in data.post_category.all %}
+                                    <li><a href="{% url 'blog:blog_category' cat_name=cat %}">{{ cat }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                <a class="post-card__author"
+                                    href="{% url 'blog:author' author_name=data.author.username %}">
+                                    <i class="ph ph-user-circle"></i> {{ data.author.get_full_name }}
+                                </a>
+                                <span class="post-card__date"><i class="ph ph-calendar-blank"></i> {{ data.date_created|date:"d M Y" }}</span>
+                            </div>
+
+                            <div class="post-single__body">
+                                {{ data.body|linebreaks }}
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <aside class="col-12 col-lg-4 blog-sidebar">
+                        <div class="sidebar-widget">
+                            {% include 'blog/search.html' %}
+                        </div>
+
+                        <div class="sidebar-widget">
+                            {% latest_posts %}
+                        </div>
+
+                        <div class="sidebar-widget">
+                            {% categories %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <p class="footer__caption">این تازه اول راهه... با امیر و صبا در استودیو پناه همراه باشید</p>
+            </div>
+        </footer>
+        <div class="bottom-bg"><img src="{% static 'img/demo/footer-bg.webp' %}" alt="PANAH studios"></div>
+    </div>
+
+    <a id="to-top" class="to-top btn btn-round btn-filled hover-anim hover-accent" href="#0"><em></em><i
+            class="ph ph-arrow-up"></i></a>
+    <script src="{% static 'js/demo/jquery.min.js' %}"></script>
+    <script src="{% static 'js/demo/modernizr.js' %}"></script>
+    <script src="{% static 'js/demo/demo.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}

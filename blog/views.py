@@ -26,4 +26,3 @@ def blog_search(request):
             posts=posts.filter(body__contains=s)
             context={'datas' : posts}
             return render(request,'blog/blog-home.html',context)
-        
