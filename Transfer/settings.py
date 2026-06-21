@@ -22,12 +22,22 @@ TEMPLATES_DIR=(BASE_DIR / "templates")
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s(d9pv-tlei0^krbzfkyppsk$&)sd5ch@(j8l3o%6_s$mo@(&8'
+# In production (PythonAnywhere), set the DJANGO_SECRET_KEY environment
+# variable instead of hardcoding it here. Falls back to the old dev key
+# so local development still works without any extra setup.
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-s(d9pv-tlei0^krbzfkyppsk$&)sd5ch@(j8l3o%6_s$mo@(&8'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Set DJANGO_DEBUG=False as an environment variable on PythonAnywhere.
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get(
+    'DJANGO_ALLOWED_HOSTS',
+    'localhost,127.0.0.1'
+).split(',')
 
 
 # Application definition
@@ -123,3 +133,16 @@ STATIC_ROOT=(BASE_DIR / 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT=(BASE_DIR / 'media')
 STATICFILES_DIRS=[BASE_DIR / "statics"]
+
+
+# Production security settings
+# These only kick in when DEBUG is False (i.e. DJANGO_DEBUG=False on the
+# server), so local development is unaffected. PythonAnywhere serves all
+# sites over HTTPS by default, so it's safe to enable these in production.
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
